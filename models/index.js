@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
-const Balance = require('./balance');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
 
+const Balance = require('./balance');
 const Mbti = require('./mbti');
 const Sinseo = require('./sinseo');
 const User = require('./user');
