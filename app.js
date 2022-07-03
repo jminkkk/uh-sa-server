@@ -8,8 +8,8 @@ var sequelize = require('./models').sequelize;
 
 sequelize.sync();
 
-var app = express();
-var router = express.Router();
+const app = express();
+const router = express.Router();
 
 // port
 app.set('httpPort', 3000);
@@ -24,17 +24,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
-const usersRouter = require('./routes/users');
-app.use('/users', usersRouter);
-
-const appRouter = require('./routes/apps');
+var appsRouter = require('./routes/appRouter');
 app.use('/app', appsRouter);
 
-var closeRouter = require('./routes/closes');
+var closesRouter = require('./routes/closeRouter');
 app.use('/close', closesRouter);
+
+var mainRouter = require('./routes/mainRouter');
+app.use('/', mainRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,7 +53,5 @@ app.use(function(err, req, res, next) {
 app.listen(app.get('httpPort'), () => {
   console.log(app.get('httpPort'), '번 포트에서 대기중');
 });
-
-
 
 module.exports = app;
