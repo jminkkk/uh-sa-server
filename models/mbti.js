@@ -8,7 +8,11 @@ module.exports = class Mbti extends Sequelize.Model {
         allowNull: false,
         unique: true,
       },
-      choice: {
+      choice1: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      choice2: {
         type: DataTypes.STRING(255),
         allowNull: false,
       },
